@@ -1,0 +1,333 @@
+Obj comparison-
+Comparable - natural sort, implement
+override compareTo() - single sort - affect org
+Comparator -implement,  compare()
+Comparator<Player> byRanking = Comparator .comparing(Player::getRanking)
+-multi sort seq - dosent affect original class
+
+GC - mark & sweep
+Single
+Parallel --java8
+G1  ---java11
+Z
+
+Java not purely OOP -
+Primitive data type
+
+Serialization
+De-serialization
+
+S - Single responsibility
+O - Open-Close principle
+L - Liskov Substitution
+I - Interface segregation
+D - Dependency inversion
+
+Synchronized keyword
+	• Instance methods
+	• Static methods
+	• Code blocks
+
+Serializable is a marker interface (has no data member and method). It is used to “mark” java classes so that objects of these classes may get certain capability. Other examples of marker interfaces are:- Cloneable and Remote
+
+Static data members and transient data members are not saved via Serialization process. So, if you don’t want to save value of a non-static data member then make it transient.
+
+Throwable
+Exception	Error
+IO	StackOverflow
+SQL	VMError
+ClassNotFound	OutOfMemory
+Runtime
+
+Runtime -
+Arithmetic, NPE, NumberFormat, IndexoutofBound - array/string
+
+Interface- default
+Java 8 introduced the default method so that the Collection interface can have a default implementation of the forEach method without requiring the classes implementing this interface to implement the same.
+
+B4 java8 interface can only 
+have public abstract method
+Now- > static & default
+Methods
+Static classname::methodname
+Instance obj::methodname
+Type String::metname
+Constructor classname::new
+Optional<T>
+
+Shallow copy- ref
+Deep copy - mem
+
+Clone() - implement Cloneable, clone()
+
+Throwable
+|                   |
+Exceptions  Errors
+
+Checked - compile
+Unchecked - run
+
+Inheritance
+Encapsulation
+Polymorphism - compile - function
+ overloading, run - function overriding
+Abstraction - interface, abstract class
+
+Inheritance - is-a
+
+Composition - has-a -> non static inner class
+
+aggregation - has-a weak 
+(doesn't owes) reference
+
+association - know -weakest
+
+Immutable class - string all wrapper classes
+Thread-safe
+
+Callable - return (future obj) - checked exp
+Runnable - dosent return 
+
+asList() Method Which Returns Fixed-size List and Throws UnsupportedOperationException
+
+List<Long> list = new ArrayList<>(Arrays.asList(1L, 2L, 3L));
+
+Generics - 
+List<Integer> 
+T for type, K for key 
+and V for value
+Wildcard - ?
+
+String - immutable string-pool
+Mutable-
+StringBuilder - not thread safe
+String buffer- thread-safe 
+
+LinkedList -> Iterator and ListIterator iterators are fail-fast (which means that after the iterator’s creation, if the list is modified, a ConcurrentModificationException will be thrown)
+Default - capacity of 16 and the load factor of 0.75
+
+HashMap - 
+As of Java 8, the data structure in which the values inside one bucket are stored is changed from a list to a balanced tree if a bucket contains 8 or more values, and it’s changed back to a list if, at some point, only 6 values are left in the bucket. This improves the performance to be O(log n).
+
+IllegalStateException is a RuntimeException, a compiler will not signalize about a problem. So it is very important to remember that Java 8 streams can’t be reused.
+
+String - immutable & hashcode is created while its creation  - so no need to calculate again
+	- good for key in hashMap - constant pool ==compares location .equals compares value
+
+Custom immutable class-
+	• Final class
+	• Private & final members
+	• No setter methods
+	• Initialize all variables in constructor
+	• Initial in constructor
+	• Clone of mutable obj  - getter
+
+Custom Singleton class-
+	• Constructor private
+	• Providing a static method that returns a reference to the instance. The lazy initialization concept is used to write the static methods.
+	• The instance is stored as a private static variable.
+
+
+JVM
+Javac - compiler
+Java - loader/executer
+Javadoc 
+Jar
+Dev tools
+
+WORA 
+Load, Byte -> m/c code
+
+Libraries
+s/w
+
+Hashtable & concurrentHashMap are both synchronized
+But hashtable locks the whole DS while CHM lock segment wise
+Collections.synchronizedMap(HM) is same thing as CHM
+
+
+Method area - class info, static var/block/method & instance method
+Heap - obj, during runtime
+Stack - fix area for single thread execution, store local vars, partial results, data for calling & returning. Methods, reference of obj
+JIT-byte code to m/c code just in run time, parts of byte code with same func compile at run time 
+GC - mark & sweep
+Class loader - loading, linking & initializing to JVM - java.lang.ClassLoader.loadClass()
+Bootstrap,  - loading core java classes req by jvm to function - rt.jar & $JAVA_HOME/jre/lib directory
+Extension, and  - load class part of java extension - DriverManager class - $JAVA_HOME/lib/ext 
+Application class loaders. - system class loader load class that are part of app, files -  classpath environment variable
+
+Java Design pattern
+Creational 	Structural	Behavioral
+Singleton	Adapter	Template method
+Factory	Composite	Mediator
+Abstract Factory	Proxy	Chain of responsibility
+Builder	Flyweight	Observer
+Prototype	Façade	Strategy
+	Bridge	Command
+	Decorator	State
+		Visitor
+		Interceptor
+		Iterator
+		memento
+
+
+Factory - Super class to return one of subclasses by factory class - keep factory class singleton or returning method static.
+Abstract F - factory of factory - interface/abstract class of super factory class.
+
+Flyweight - string pool - lot of obj creation
+Facade - wrapper interface on top of existing interface for client app.
+Bridge - decouple interfaces n implementations preferring composition
+Decorator- functionality of obj at runtime 
+
+Builder Pattern - 
+	• create a static nested class and then copy all the arguments from the outer class to the Builder class.
+	• Outer class - CN, builder class - CNBuilder
+	• Java Builder class should have a public constructor with all the required attributes as parameters
+	• Java Builder class should have methods to set the optional parameters and it should return the same Builder object after setting the optional attribute.
+	• The final step is to provide a build() method in the builder class that will return the Object needed by client program. For this we need to have a private constructor in the Class with Builder class as argument
+
+Chain of responsibility - try -> catch -> chain calling class throw …
+Observer- state change - observable class and observer interface.
+Strategy - multi algo decide at runtime - collections.sort() takes comparator.
+Iterator - collection iterator
+
+Bean Scope
+	• Singleton - (Default) Scopes a single bean definition to a single object instance for each Spring IoC container.     <Java singleton scope is of class loader>
+	• Prototype - Scopes a single bean definition to any number of object instances.
+	
+	Below are only valid in the context of a web-aware Spring Application Context->
+	• Request - a single bean definition to the lifecycle of a single HTTP request.
+	• Session - lifecycle of http session.
+	• Application - lifecycle of servlet context
+	• WebSocket - lifecycle of web socket
+
+
+
+
+Ever since WebClient was released the main workhorse was supposed to be retrieve() to be able to provide a simple but stable API against a fully asynchronous webclient.
+The problem was that most people were used to work with the ResponseEntities returned by the old deprecated RestTemplate so ppl instead turned to using the exchange() function instead.
+But it's here the problem lies. When you gain access to the Response you also have a responsibility attached to it. You are obligated to consume the response so that the server can close the TCP connection. This usually means that you need to read the header and the body and then we can close the connection.
+If you don't consume the response you will have an open connection, with a resulting memory leak.
+Spring solved this by providing functions like response#bodyToMono and response#bodyToFlux which consume the body and then after closes the response (which in turn closes the connection, thus consuming the response).
+But it turns out it was quite easy (since developers are crafty) for people to write code that didn't consume the response hence giving dangling TCP connections.
+webclient.url( ... )
+    .exchange(response -> {
+// This is just an example but, but here i just re-return the response
+        // which means that the server will keep the connection open, until i 
+        // actually consume the body. I could send this all over my application
+        // but never consume it and the server will keep the connection open as
+        // long as i do, could be a potential memory leak.
+return Mono.just(response)
+    }
+The new exchangeToMono implementation basically forces you to consume the body in favour of avoiding memory leaks. If you want to work on the raw response, you will be forced to consume the body.
+So lats talk about your example and your needs.
+You just want to basically proxy the request from one server to another. You do actually consume the body you just don't do it in the flatMap in close proximity to the WebClient.
+.exchange()
+   .flatMap { response ->
+      ServerResponse.
+         .status(response.statusCode())
+         .headers { it.addAll(response.headers().asHttpHeaders()) }
+         .body(response.bodyToMono<ByteArray>()) 
+         // Here you are declaring you want to consume but it isn't consumed right here, it's not consumed until much later.
+   }
+Here in your code, you are returning a ServerResponse but you have to always think about. Nothing happens until you subscribe. You are basically passing a long a ServerResponse but you haven't consumed the body yet. You have only declared that when the server needs the body, it will then have to consume the body of the last response the get the new body.
+Think of it this way, you are returning a ServerResponse that only contains declarations about what we want in it, not what is actually in it.
+As this gets returned from the flatMap it will travel all the way out of the application until we write it as a response to our open TCP connection we have against the client.
+Only there and then will the response be built and that's when your first response from the WebClient will be consumed and closed.
+
+
+Spring cloud
+
+Spring cloud config -
+Server side and client side support for external config in distributed sys
+Server -  @EnableConfigServer , yml , spring.cloud.config.server.git.uri
+Client - spring.config.import: configserver:http://server_add , @Lazy restTemplate, @RefreshScope svc
+
+Wednesday, March 13, 2024
+5:17 PM
+
+E elasticsearch -  search & analytics engine based on lucene library
+L logstash - log file is provided, extract the logs and send to elasticsearch
+K kibana -  index from logstash -> file -> index pattern -> visualization
+
+Spring cloud tracing log
+Sleuth - service name, trace id (unique id for request), span id (unique per MS) , export flag
+Zipkin - server for visualization
+
+Spring cloud gateway -
+Spring.cloud.routes.-id:uri:predicates:Path
+	
+
+
+Circuit breaker - Resiliance4j - fault tolerance
+Threshold for failure MS - 
+	Closed -> fail threshold-> open  ->timeout -> half-open
+	                       <- ------------------------  success
+	                                                        <- failure
+Rate limiter, time limiter, retry, bulkhead, cache
+After Path, filters:-name: CircuitBreaker args: name: fallbackuri:
+
+Starter-Validation @Valid
+@NotNull() @Email
+@Pattern(regex) @Min @Max
+Exception - @RestControllerAdvice
+@ExceptionHandler(
+MethodArgumentNotValid )
+
+
+Eureka -  service discovery by netflix 
+Server - @EnableEurekaServer , eureka.client.register-with-eureka: false
+Client- @EnableDiscoveryClient (or not), eureka.client.fetch-registery:true,
+	Eureka.client.serviceUrl.defaultZone: server_name, eureka.instance.hostname:localhost
+	@LoadBalanced RestTemplate
+
+
+Transaction - set of db query - one amount of work
+@Transactional 
+@EnableTransactionManagement
+
+Propogation - business logic txn boundary
+.REQUIRED - default one, chk for active txn if found
+                   appends to it else creates new
+.SUPPORTS - chk for active txn if found uses it else
+	Executed non-txn
+.MANDATORY - if there is an active txn,
+	 then it will be used else throws an exception
+.NEVER - throws err if there is no active txn
+.NOT_SUPPORTED - curent txn exists then spring 
+	Suspends it and execute without txn
+.REQUIRES_NEW - suspend current if exist nd create 
+	New txn
+.NESTED - if txn exists then marks a save point.
+	If business logic throw exception txn rollback to save point. If no acitve txn then act as REQUIRED.
+
+Isolative level-
+DEFAULT - default isolation of RDBMS
+READ_UNCOMMITED - lowest isolation level all side effects
+READ_COMMITED - prevent dirty read
+REPETABLE_READ - prevent dirty & non-repetable read
+SERIALIZABLE - prevents all but lowest conccurent rates
+
+
+Transaction - internally creates proxy class which then call.
+As proxy is involved static method doesn't work
+
+
+Atomicity, consistency, isolation and durability.
+A - either all op complete or none at all
+C - db state valid & constraint satisfied
+I - concurrent txn must not affect eo
+D - data write by successful txn must be records in persisted storage
+
+I - read phenomenon
+Dirty read 	 txn read data written by  other concurrent uncommited txn
+Non-repeatable read 	 txn read same value twice & see different values
+Phantom read 	 re-execute same query nd returns different set of rows
+Serialization	Result of grp of txn ran concurrently is imposible with sequence
+
+ANSI Isolation level-  low-high
+Read uncommited	Can see data written by uncomitted txn
+Read commited	Only see data written by comitted txn
+Repeatable read	Same read query returns same result
+Serializable	Achieve same result as execute in some order
+
